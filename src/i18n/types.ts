@@ -34,6 +34,9 @@ export interface TimeWords {
   readonly week: UnitWords
   readonly month: UnitWords
   readonly year: UnitWords
+  readonly today: string
+  readonly yesterday: string
+  readonly tomorrow: string
   readonly connector: string
   readonly separator: string
   past(delta: string): string
