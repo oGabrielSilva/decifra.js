@@ -1,6 +1,6 @@
 {
   "name": "decifra",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Formatação humanizada de números, datas, tamanhos e durações para JavaScript e TypeScript. pt-BR de primeira classe.",
   "type": "module",
   "main": "./dist/index.js",
@@ -16,7 +16,10 @@
   ],
   "scripts": {
     "build": "tsc",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "coverage": "vitest run --coverage"
   },
   "keywords": [
     "humanize",
@@ -42,6 +45,8 @@
   },
   "packageManager": "yarn@4.6.0",
   "devDependencies": {
-    "typescript": "^6.0.3"
+    "@vitest/coverage-v8": "^4.1.6",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.6"
   }
 }
