@@ -1,0 +1,47 @@
+{
+  "name": "decifra",
+  "version": "0.0.1",
+  "description": "Formatação humanizada de números, datas, tamanhos e durações para JavaScript e TypeScript. pt-BR de primeira classe.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "humanize",
+    "format",
+    "i18n",
+    "pt-br",
+    "intl",
+    "naturaltime",
+    "naturalsize",
+    "intcomma",
+    "ordinal"
+  ],
+  "author": "Gabriel Silva",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oGabrielSilva/decifra.git"
+  },
+  "homepage": "https://github.com/oGabrielSilva/decifra#readme",
+  "bugs": "https://github.com/oGabrielSilva/decifra/issues",
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "yarn@4.6.0",
+  "devDependencies": {
+    "typescript": "^6.0.3"
+  }
+}
