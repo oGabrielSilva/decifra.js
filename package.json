@@ -1,6 +1,6 @@
 {
   "name": "decifra",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Formatação humanizada de números, datas, tamanhos e durações para JavaScript e TypeScript. pt-BR de primeira classe.",
   "type": "module",
   "main": "./dist/index.js",
@@ -33,10 +33,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/oGabrielSilva/decifra.git"
+    "url": "git+https://github.com/oGabrielSilva/decifra.js.git"
   },
-  "homepage": "https://github.com/oGabrielSilva/decifra#readme",
-  "bugs": "https://github.com/oGabrielSilva/decifra/issues",
+  "homepage": "https://github.com/oGabrielSilva/decifra.js#readme",
+  "bugs": "https://github.com/oGabrielSilva/decifra.js/issues",
   "engines": {
     "node": ">=18"
   },
