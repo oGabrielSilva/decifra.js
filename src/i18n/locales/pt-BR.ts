@@ -17,6 +17,8 @@ export const ptBR: LocaleStrings = {
     year: { singular: 'um ano', plural: 'anos' },
     connector: 'e',
     separator: ', ',
+    past: (delta) => `há ${delta}`,
+    future: (delta) => `em ${delta}`,
   },
   intwordScales: [
     { exponent: 3, one: 'mil', other: 'mil' },

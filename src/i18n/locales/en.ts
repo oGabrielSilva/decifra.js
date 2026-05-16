@@ -28,6 +28,8 @@ export const en: LocaleStrings = {
     year: { singular: 'a year', plural: 'years' },
     connector: 'and',
     separator: ', ',
+    past: (delta) => `${delta} ago`,
+    future: (delta) => `in ${delta}`,
   },
   intwordScales: [
     { exponent: 3, one: 'thousand', other: 'thousand' },

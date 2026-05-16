@@ -36,6 +36,8 @@ export interface TimeWords {
   readonly year: UnitWords
   readonly connector: string
   readonly separator: string
+  past(delta: string): string
+  future(delta: string): string
 }
 
 export interface LocaleStrings {
