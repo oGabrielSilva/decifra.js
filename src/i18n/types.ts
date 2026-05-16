@@ -18,10 +18,31 @@ export interface ByteWords {
   readonly plural: string
 }
 
+export interface UnitWords {
+  readonly singular: string
+  readonly plural: string
+}
+
+export interface TimeWords {
+  readonly moment: string
+  readonly microsecond: UnitWords
+  readonly millisecond: UnitWords
+  readonly second: UnitWords
+  readonly minute: UnitWords
+  readonly hour: UnitWords
+  readonly day: UnitWords
+  readonly week: UnitWords
+  readonly month: UnitWords
+  readonly year: UnitWords
+  readonly connector: string
+  readonly separator: string
+}
+
 export interface LocaleStrings {
   readonly id: LocaleId
   readonly intwordScales: readonly IntwordScale[]
   readonly apnumber: ApNumberTable
   readonly byteWords: ByteWords
+  readonly time: TimeWords
   ordinal(value: number, gender: OrdinalGender): string
 }
