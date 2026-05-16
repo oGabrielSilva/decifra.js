@@ -2,6 +2,7 @@ import type { LocaleStrings } from '../types.js'
 
 export const ptBR: LocaleStrings = {
   id: 'pt-BR',
+  apnumber: ['zero', 'um', 'dois', 'três', 'quatro', 'cinco', 'seis', 'sete', 'oito', 'nove'],
   intwordScales: [
     { exponent: 3, one: 'mil', other: 'mil' },
     { exponent: 6, one: 'milhão', other: 'milhões' },

@@ -13,6 +13,7 @@ const ordinalPlural = new Intl.PluralRules('en', { type: 'ordinal' })
 
 export const en: LocaleStrings = {
   id: 'en',
+  apnumber: ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'],
   intwordScales: [
     { exponent: 3, one: 'thousand', other: 'thousand' },
     { exponent: 6, one: 'million', other: 'million' },

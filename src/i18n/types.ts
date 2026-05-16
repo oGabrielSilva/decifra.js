@@ -8,8 +8,14 @@ export interface IntwordScale {
   readonly other: string
 }
 
+export type ApNumberTable = readonly [
+  string, string, string, string, string,
+  string, string, string, string, string,
+]
+
 export interface LocaleStrings {
   readonly id: LocaleId
   readonly intwordScales: readonly IntwordScale[]
+  readonly apnumber: ApNumberTable
   ordinal(value: number, gender: OrdinalGender): string
 }
