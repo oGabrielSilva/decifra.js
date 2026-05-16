@@ -1,5 +1,16 @@
 import type { LocaleStrings } from '../types.js'
 
+const ordinalSuffixes: Record<Intl.LDMLPluralRule, string> = {
+  zero: 'th',
+  one: 'st',
+  two: 'nd',
+  few: 'rd',
+  many: 'th',
+  other: 'th',
+}
+
+const ordinalPlural = new Intl.PluralRules('en', { type: 'ordinal' })
+
 export const en: LocaleStrings = {
   id: 'en',
   intwordScales: [
@@ -16,4 +27,8 @@ export const en: LocaleStrings = {
     { exponent: 33, one: 'decillion', other: 'decillion' },
     { exponent: 100, one: 'googol', other: 'googol' },
   ],
+  ordinal(value) {
+    const category = ordinalPlural.select(Math.abs(value))
+    return `${value}${ordinalSuffixes[category]}`
+  },
 }

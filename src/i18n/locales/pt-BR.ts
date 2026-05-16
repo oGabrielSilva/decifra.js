@@ -16,4 +16,8 @@ export const ptBR: LocaleStrings = {
     { exponent: 33, one: 'decilhão', other: 'decilhões' },
     { exponent: 100, one: 'googol', other: 'googols' },
   ],
+  ordinal(value, gender) {
+    const suffix = gender === 'female' ? 'ª' : 'º'
+    return `${value}${suffix}`
+  },
 }
