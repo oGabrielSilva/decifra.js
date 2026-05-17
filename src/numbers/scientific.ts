@@ -49,9 +49,7 @@ export function scientific(value: number, opts: ScientificOptions = {}): string 
   }
 
   const mantissa = mantissaParts.join('')
-  const exponent = [...exponentParts.join('')]
-    .map((ch) => SUPERSCRIPT[ch] ?? ch)
-    .join('')
+  const exponent = [...exponentParts.join('')].map((ch) => SUPERSCRIPT[ch] ?? ch).join('')
 
   return `${mantissa} × 10${exponent}`
 }

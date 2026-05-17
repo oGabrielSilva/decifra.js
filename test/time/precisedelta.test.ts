@@ -25,9 +25,9 @@ describe('precisedelta', () => {
     })
 
     it('inclui milissegundos quando minimumUnit permite', () => {
-      expect(
-        precisedelta({ seconds: 33, milliseconds: 123 }, { minimumUnit: 'millisecond' }),
-      ).toBe('33 seconds and 123 milliseconds')
+      expect(precisedelta({ seconds: 33, milliseconds: 123 }, { minimumUnit: 'millisecond' })).toBe(
+        '33 seconds and 123 milliseconds',
+      )
     })
 
     it('zero ms vira 0 seconds', () => {
@@ -41,9 +41,9 @@ describe('precisedelta', () => {
     })
 
     it('format custom aplicado ao fracionário', () => {
-      expect(
-        precisedelta({ minutes: 1, seconds: 30.5 }, { format: (n) => n.toFixed(1) }),
-      ).toBe('1 minute and 30.5 seconds')
+      expect(precisedelta({ minutes: 1, seconds: 30.5 }, { format: (n) => n.toFixed(1) })).toBe(
+        '1 minute and 30.5 seconds',
+      )
     })
   })
 
@@ -59,9 +59,9 @@ describe('precisedelta', () => {
     })
 
     it('33,12 segundos com vírgula decimal', () => {
-      expect(
-        precisedelta({ seconds: 33.12 }, { locale: 'pt-BR', minimumUnit: 'second' }),
-      ).toBe('33,12 segundos')
+      expect(precisedelta({ seconds: 33.12 }, { locale: 'pt-BR', minimumUnit: 'second' })).toBe(
+        '33,12 segundos',
+      )
     })
   })
 

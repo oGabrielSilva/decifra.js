@@ -21,7 +21,11 @@ export function naturalsize(value: number, opts: NaturalsizeOptions = {}): strin
   const binary = opts.binary ?? false
   const base = gnu || binary ? 1024 : 1000
 
-  const suffixes: readonly string[] = gnu ? GNU_SUFFIXES : binary ? BINARY_SUFFIXES : DECIMAL_SUFFIXES
+  const suffixes: readonly string[] = gnu
+    ? GNU_SUFFIXES
+    : binary
+      ? BINARY_SUFFIXES
+      : DECIMAL_SUFFIXES
   const integerFormatter = new Intl.NumberFormat(locale, { maximumFractionDigits: 0 })
   const scaledFormatter = new Intl.NumberFormat(locale, {
     minimumFractionDigits: 1,

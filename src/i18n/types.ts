@@ -9,8 +9,16 @@ export interface IntwordScale {
 }
 
 export type ApNumberTable = readonly [
-  string, string, string, string, string,
-  string, string, string, string, string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
 ]
 
 export interface ByteWords {

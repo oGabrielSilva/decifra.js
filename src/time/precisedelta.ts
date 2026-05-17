@@ -1,16 +1,7 @@
 import { resolveLocale } from '../defaults.js'
 import { getLocale } from '../i18n/registry.js'
 import type { LocaleId, TimeWords, UnitWords } from '../i18n/types.js'
-import {
-  DAY,
-  HOUR,
-  MINUTE,
-  MONTH,
-  SECOND,
-  WEEK,
-  YEAR,
-  toMilliseconds,
-} from './duration.js'
+import { DAY, HOUR, MINUTE, MONTH, SECOND, WEEK, YEAR, toMilliseconds } from './duration.js'
 import type { Delta } from './duration.js'
 
 export type PrecisedeltaUnit =

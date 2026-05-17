@@ -31,9 +31,12 @@ describe('naturalday', () => {
 
     it('format custom sobrescreve padrão', () => {
       const date = new Date(2024, 5, 15)
-      expect(naturalday(date, { now: NOW, format: { year: 'numeric', month: '2-digit', day: '2-digit' } })).toMatch(
-        /06\/15\/2024|2024-06-15/,
-      )
+      expect(
+        naturalday(date, {
+          now: NOW,
+          format: { year: 'numeric', month: '2-digit', day: '2-digit' },
+        }),
+      ).toMatch(/06\/15\/2024|2024-06-15/)
     })
   })
 
