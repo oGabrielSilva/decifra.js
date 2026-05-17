@@ -39,6 +39,31 @@ describe('ordinal', () => {
     it('113 vira 113th', () => {
       expect(ordinal(113)).toBe('113th')
     })
+
+    it('0 vira 0th', () => {
+      expect(ordinal(0)).toBe('0th')
+    })
+
+    it('12 vira 12th', () => {
+      expect(ordinal(12)).toBe('12th')
+    })
+
+    it('13 vira 13th', () => {
+      expect(ordinal(13)).toBe('13th')
+    })
+
+    it('decimais truncam', () => {
+      expect(ordinal(1.5)).toBe('1st')
+      expect(ordinal(2.9)).toBe('2nd')
+    })
+
+    it('negativos preservam sinal', () => {
+      expect(ordinal(-1)).toBe('-1st')
+    })
+
+    it('NaN passa direto', () => {
+      expect(ordinal(NaN)).toBe('NaN')
+    })
   })
 
   describe('pt-BR', () => {
