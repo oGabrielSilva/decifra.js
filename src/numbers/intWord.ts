@@ -3,12 +3,12 @@ import { getLocale } from '../i18n/registry.js'
 import type { LocaleId } from '../i18n/types.js'
 import { getNumberFormat } from '../util/intl-cache.js'
 
-export interface IntwordOptions {
+export interface IntWordOptions {
   locale?: LocaleId
   format?: (value: number) => string
 }
 
-export function intword(value: number, opts: IntwordOptions = {}): string {
+export function intWord(value: number, opts: IntWordOptions = {}): string {
   if (!Number.isFinite(value)) return String(value)
 
   const locale = resolveLocale(opts.locale)
@@ -16,7 +16,7 @@ export function intword(value: number, opts: IntwordOptions = {}): string {
 
   if (abs < 1000) return String(value)
 
-  const scales = getLocale(locale).intwordScales
+  const scales = getLocale(locale).intWordScales
   let scale = scales[0]!
   for (const candidate of scales) {
     if (abs >= 10 ** candidate.exponent) scale = candidate

@@ -3,13 +3,13 @@
 Formatação humanizada de números, datas, tamanhos e durações para JavaScript e TypeScript. pt-BR de primeira classe.
 
 ```ts
-import { intcomma, naturalsize, naturaltime, setDefaultLocale } from 'decifra.js'
+import { intComma, naturalSize, naturalTime, setDefaultLocale } from 'decifra.js'
 
 setDefaultLocale('pt-BR')
 
-intcomma(1234567) // "1.234.567"
-naturalsize(5_242_880, { binary: true }) // "5,0 MiB"
-naturaltime(new Date(Date.now() - 180_000)) // "há 3 minutos"
+intComma(1234567) // "1.234.567"
+naturalSize(5_242_880, { binary: true }) // "5,0 MiB"
+naturalTime(new Date(Date.now() - 180_000)) // "há 3 minutos"
 ```
 
 ## Instalação
@@ -33,13 +33,13 @@ Depois de clonar o repo e rodar `yarn install`:
 Toda função aceita `{ locale?: 'en' | 'pt-BR' }`. Sem opção, usa o default global (inicia em `'en'`).
 
 ```ts
-import { intcomma, setDefaultLocale, getDefaultLocale } from 'decifra'
+import { intComma, setDefaultLocale, getDefaultLocale } from 'decifra.js'
 
-intcomma(1234) // "1,234"
-intcomma(1234, { locale: 'pt-BR' }) // "1.234"
+intComma(1234) // "1,234"
+intComma(1234, { locale: 'pt-BR' }) // "1.234"
 
 setDefaultLocale('pt-BR')
-intcomma(1234) // "1.234"
+intComma(1234) // "1.234"
 ```
 
 ## API
@@ -48,10 +48,10 @@ intcomma(1234) // "1.234"
 
 | Função                 | Exemplo (en)                              | Exemplo (pt-BR)                          |
 | ---------------------- | ----------------------------------------- | ---------------------------------------- |
-| `intcomma(n, opts?)`   | `intcomma(12345)` → `12,345`              | `intcomma(12345)` → `12.345`             |
-| `intword(n, opts?)`    | `intword(123_455_913)` → `123.5 million`  | `intword(123_455_913)` → `123,5 milhões` |
+| `intComma(n, opts?)`   | `intComma(12345)` → `12,345`              | `intComma(12345)` → `12.345`             |
+| `intWord(n, opts?)`    | `intWord(123_455_913)` → `123.5 million`  | `intWord(123_455_913)` → `123,5 milhões` |
 | `ordinal(n, opts?)`    | `ordinal(2)` → `2nd`                      | `ordinal(2)` → `2º`                      |
-| `apnumber(n, opts?)`   | `apnumber(4)` → `four`                    | `apnumber(4)` → `quatro`                 |
+| `apNumber(n, opts?)`   | `apNumber(4)` → `four`                    | `apNumber(4)` → `quatro`                 |
 | `fractional(n, opts?)` | `fractional(1.5)` → `1 1/2`               | (saída é puramente numérica)             |
 | `scientific(n, opts?)` | `scientific(0.3)` → `3.00 × 10⁻¹`         | `scientific(0.3)` → `3,00 × 10⁻¹`        |
 | `clamp(n, opts)`       | `clamp(0.001, { floor: 0.01 })` → `<0.01` | mesmo                                    |
@@ -60,24 +60,24 @@ intcomma(1234) // "1.234"
 
 | Função                            | Exemplo (en)                                      | Exemplo (pt-BR)                     |
 | --------------------------------- | ------------------------------------------------- | ----------------------------------- |
-| `naturalsize(n, opts?)`           | `naturalsize(1_000_000)` → `1.0 MB`               | `naturalsize(1_000_000)` → `1,0 MB` |
-| `naturalsize(n, opts?)` (binário) | `naturalsize(1024, { binary: true })` → `1.0 KiB` | `1,0 KiB`                           |
-| `naturalsize(n, opts?)` (GNU)     | `naturalsize(1024, { gnu: true })` → `1.0K`       | `1,0K`                              |
+| `naturalSize(n, opts?)`           | `naturalSize(1_000_000)` → `1.0 MB`               | `naturalSize(1_000_000)` → `1,0 MB` |
+| `naturalSize(n, opts?)` (binário) | `naturalSize(1024, { binary: true })` → `1.0 KiB` | `1,0 KiB`                           |
+| `naturalSize(n, opts?)` (GNU)     | `naturalSize(1024, { gnu: true })` → `1.0K`       | `1,0K`                              |
 
 ### Tempo e data
 
 | Função                       | Exemplo (en)                                                   | Exemplo (pt-BR)                    |
 | ---------------------------- | -------------------------------------------------------------- | ---------------------------------- |
-| `naturaldelta(delta, opts?)` | `{ seconds: 1001 }` → `16 minutes`                             | `{ seconds: 1001 }` → `16 minutos` |
-| `naturaltime(value, opts?)`  | `1h atrás` → `an hour ago`                                     | `1h atrás` → `há uma hora`         |
-| `naturalday(date, opts?)`    | `hoje` → `today`                                               | `hoje` → `hoje`                    |
-| `naturaldate(date, opts?)`   | data antiga → `Jun 05, 2007`                                   | `05 de jun. de 2007`               |
-| `precisedelta(delta, opts?)` | `{ days: 2, seconds: 3633 }` → `2 days, 1 hour and 33 seconds` | `2 dias, 1 hora e 33 segundos`     |
+| `naturalDelta(delta, opts?)` | `{ seconds: 1001 }` → `16 minutes`                             | `{ seconds: 1001 }` → `16 minutos` |
+| `naturalTime(value, opts?)`  | `1h atrás` → `an hour ago`                                     | `1h atrás` → `há uma hora`         |
+| `naturalDay(date, opts?)`    | `hoje` → `today`                                               | `hoje` → `hoje`                    |
+| `naturalDate(date, opts?)`   | data antiga → `Jun 05, 2007`                                   | `05 de jun. de 2007`               |
+| `preciseDelta(delta, opts?)` | `{ days: 2, seconds: 3633 }` → `2 days, 1 hour and 33 seconds` | `2 dias, 1 hora e 33 segundos`     |
 
 Inputs de tempo aceitam:
 
-- `Date` (apenas `naturaltime` / `naturalday` / `naturaldate`)
-- `number` (timestamp em ms para `naturaltime`/`naturalday`/`naturaldate`; duração em ms para `naturaldelta`/`precisedelta`)
+- `Date` (apenas `naturalTime` / `naturalDay` / `naturalDate`)
+- `number` (timestamp em ms para `naturalTime`/`naturalDay`/`naturalDate`; duração em ms para `naturalDelta`/`preciseDelta`)
 - `Duration` (`{ years?, months?, weeks?, days?, hours?, minutes?, seconds?, milliseconds?, microseconds? }`)
 
 ## Inspiração

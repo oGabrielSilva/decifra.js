@@ -2,7 +2,7 @@ import type { LocaleStrings } from '../types.js'
 
 export const ptBR: LocaleStrings = {
   id: 'pt-BR',
-  apnumber: ['zero', 'um', 'dois', 'três', 'quatro', 'cinco', 'seis', 'sete', 'oito', 'nove'],
+  apNumber: ['zero', 'um', 'dois', 'três', 'quatro', 'cinco', 'seis', 'sete', 'oito', 'nove'],
   byteWords: { singular: 'byte', plural: 'bytes' },
   time: {
     moment: 'um momento',
@@ -23,7 +23,7 @@ export const ptBR: LocaleStrings = {
     past: (delta) => `há ${delta}`,
     future: (delta) => `em ${delta}`,
   },
-  intwordScales: [
+  intWordScales: [
     { exponent: 3, one: 'mil', other: 'mil' },
     { exponent: 6, one: 'milhão', other: 'milhões' },
     { exponent: 9, one: 'bilhão', other: 'bilhões' },

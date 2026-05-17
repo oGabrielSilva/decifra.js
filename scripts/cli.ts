@@ -1,21 +1,21 @@
 import readline from 'node:readline/promises'
 import { stdin, stdout } from 'node:process'
 import {
-  apnumber,
+  apNumber,
   clamp,
   fractional,
-  intcomma,
-  intword,
-  naturaldate,
-  naturaldelta,
-  naturalday,
-  naturalsize,
-  naturaltime,
+  intComma,
+  intWord,
+  naturalDate,
+  naturalDelta,
+  naturalDay,
+  naturalSize,
+  naturalTime,
   ordinal,
-  precisedelta,
+  preciseDelta,
   scientific,
 } from '../src/index.js'
-import type { LocaleId, OrdinalGender, PrecisedeltaUnit } from '../src/index.js'
+import type { LocaleId, OrdinalGender, PreciseDeltaUnit } from '../src/index.js'
 import type { Duration } from '../src/time/duration.js'
 
 const rl = readline.createInterface({ input: stdin, output: stdout })
@@ -57,27 +57,27 @@ interface Command {
 
 const commands: Command[] = [
   {
-    name: 'intcomma',
+    name: 'intComma',
     description: 'separador de milhares',
     async run() {
       const value = await askNumber('Valor: ')
       const locale = await askLocale()
       const ndigitsRaw = await ask('ndigits (enter pra omitir): ')
-      const opts: Parameters<typeof intcomma>[1] = {}
+      const opts: Parameters<typeof intComma>[1] = {}
       if (locale !== undefined) opts.locale = locale
       if (ndigitsRaw !== '') opts.ndigits = Number(ndigitsRaw)
-      return intcomma(value, opts)
+      return intComma(value, opts)
     },
   },
   {
-    name: 'intword',
+    name: 'intWord',
     description: 'escala em mil, milhão, bilhão',
     async run() {
       const value = await askNumber('Valor: ')
       const locale = await askLocale()
-      const opts: Parameters<typeof intword>[1] = {}
+      const opts: Parameters<typeof intWord>[1] = {}
       if (locale !== undefined) opts.locale = locale
-      return intword(value, opts)
+      return intWord(value, opts)
     },
   },
   {
@@ -96,14 +96,14 @@ const commands: Command[] = [
     },
   },
   {
-    name: 'apnumber',
+    name: 'apNumber',
     description: 'escreve 0-9 por extenso',
     async run() {
       const value = await askNumber('Valor: ')
       const locale = await askLocale()
-      const opts: Parameters<typeof apnumber>[1] = {}
+      const opts: Parameters<typeof apNumber>[1] = {}
       if (locale !== undefined) opts.locale = locale
-      return apnumber(value, opts)
+      return apNumber(value, opts)
     },
   },
   {
@@ -141,46 +141,46 @@ const commands: Command[] = [
     },
   },
   {
-    name: 'naturalsize',
+    name: 'naturalSize',
     description: 'tamanho de arquivo',
     async run() {
       const value = await askNumber('Valor em bytes: ')
       const locale = await askLocale()
       const binary = await askBool('Binário (KiB/MiB)?')
       const gnu = !binary ? await askBool('GNU (K/M/G sem espaço)?') : false
-      const opts: Parameters<typeof naturalsize>[1] = {}
+      const opts: Parameters<typeof naturalSize>[1] = {}
       if (locale !== undefined) opts.locale = locale
       if (binary) opts.binary = true
       if (gnu) opts.gnu = true
-      return naturalsize(value, opts)
+      return naturalSize(value, opts)
     },
   },
   {
-    name: 'naturaldelta',
+    name: 'naturalDelta',
     description: 'duração na maior unidade',
     async run() {
       const duration = await askDuration()
       const locale = await askLocale()
-      const opts: Parameters<typeof naturaldelta>[1] = {}
+      const opts: Parameters<typeof naturalDelta>[1] = {}
       if (locale !== undefined) opts.locale = locale
-      return naturaldelta(duration, opts)
+      return naturalDelta(duration, opts)
     },
   },
   {
-    name: 'naturaltime',
+    name: 'naturalTime',
     description: 'relativo a agora',
     async run() {
       console.log('  Informe segundos desde agora (negativo = passado).')
       const offsetSeconds = await askNumber('Offset em segundos: ')
       const locale = await askLocale()
       const target = new Date(Date.now() + offsetSeconds * 1000)
-      const opts: Parameters<typeof naturaltime>[1] = {}
+      const opts: Parameters<typeof naturalTime>[1] = {}
       if (locale !== undefined) opts.locale = locale
-      return naturaltime(target, opts)
+      return naturalTime(target, opts)
     },
   },
   {
-    name: 'naturalday',
+    name: 'naturalDay',
     description: 'hoje, ontem, amanhã ou data',
     async run() {
       console.log('  Informe dias desde hoje (0 = hoje, -1 = ontem, 1 = amanhã).')
@@ -188,36 +188,36 @@ const commands: Command[] = [
       const locale = await askLocale()
       const target = new Date()
       target.setDate(target.getDate() + offsetDays)
-      const opts: Parameters<typeof naturalday>[1] = {}
+      const opts: Parameters<typeof naturalDay>[1] = {}
       if (locale !== undefined) opts.locale = locale
-      return naturalday(target, opts)
+      return naturalDay(target, opts)
     },
   },
   {
-    name: 'naturaldate',
-    description: 'como naturalday, com ano se preciso',
+    name: 'naturalDate',
+    description: 'como naturalDay, com ano se preciso',
     async run() {
       console.log('  Informe dias desde hoje (0 = hoje, -1 = ontem).')
       const offsetDays = await askNumber('Offset em dias: ')
       const locale = await askLocale()
       const target = new Date()
       target.setDate(target.getDate() + offsetDays)
-      const opts: Parameters<typeof naturaldate>[1] = {}
+      const opts: Parameters<typeof naturalDate>[1] = {}
       if (locale !== undefined) opts.locale = locale
-      return naturaldate(target, opts)
+      return naturalDate(target, opts)
     },
   },
   {
-    name: 'precisedelta',
+    name: 'preciseDelta',
     description: 'duração detalhada',
     async run() {
       const duration = await askDuration()
       const locale = await askLocale()
       const minRaw = (await ask('minimumUnit [second/millisecond/...] (enter = second): ')).trim()
-      const opts: Parameters<typeof precisedelta>[1] = {}
+      const opts: Parameters<typeof preciseDelta>[1] = {}
       if (locale !== undefined) opts.locale = locale
-      if (minRaw !== '') opts.minimumUnit = minRaw as PrecisedeltaUnit
-      return precisedelta(duration, opts)
+      if (minRaw !== '') opts.minimumUnit = minRaw as PreciseDeltaUnit
+      return preciseDelta(duration, opts)
     },
   },
 ]

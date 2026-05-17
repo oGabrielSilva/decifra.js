@@ -13,7 +13,7 @@ export interface NaturalDeltaOptions {
   months?: boolean
 }
 
-export function naturaldelta(delta: Delta, opts: NaturalDeltaOptions = {}): string {
+export function naturalDelta(delta: Delta, opts: NaturalDeltaOptions = {}): string {
   const locale = resolveLocale(opts.locale)
   const time = getLocale(locale).time
   const ms = toMilliseconds(delta)

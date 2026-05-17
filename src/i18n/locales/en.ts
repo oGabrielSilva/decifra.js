@@ -13,7 +13,7 @@ const ordinalPlural = new Intl.PluralRules('en', { type: 'ordinal' })
 
 export const en: LocaleStrings = {
   id: 'en',
-  apnumber: ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'],
+  apNumber: ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'],
   byteWords: { singular: 'Byte', plural: 'Bytes' },
   time: {
     moment: 'a moment',
@@ -34,7 +34,7 @@ export const en: LocaleStrings = {
     past: (delta) => `${delta} ago`,
     future: (delta) => `in ${delta}`,
   },
-  intwordScales: [
+  intWordScales: [
     { exponent: 3, one: 'thousand', other: 'thousand' },
     { exponent: 6, one: 'million', other: 'million' },
     { exponent: 9, one: 'billion', other: 'billion' },

@@ -2,12 +2,12 @@ import { resolveLocale } from '../defaults.js'
 import type { LocaleId } from '../i18n/types.js'
 import { getNumberFormat } from '../util/intl-cache.js'
 
-export interface IntcommaOptions {
+export interface IntCommaOptions {
   locale?: LocaleId
   ndigits?: number
 }
 
-export function intcomma(value: number, opts: IntcommaOptions = {}): string {
+export function intComma(value: number, opts: IntCommaOptions = {}): string {
   if (!Number.isFinite(value)) return String(value)
 
   const locale = resolveLocale(opts.locale)

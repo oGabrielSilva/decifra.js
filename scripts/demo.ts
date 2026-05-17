@@ -1,16 +1,16 @@
 import {
-  apnumber,
+  apNumber,
   clamp,
   fractional,
-  intcomma,
-  intword,
-  naturaldate,
-  naturaldelta,
-  naturalday,
-  naturalsize,
-  naturaltime,
+  intComma,
+  intWord,
+  naturalDate,
+  naturalDelta,
+  naturalDay,
+  naturalSize,
+  naturalTime,
   ordinal,
-  precisedelta,
+  preciseDelta,
   scientific,
 } from '../src/index.js'
 
@@ -29,20 +29,20 @@ console.log('═'.repeat(60))
 console.log('  Decifra — demonstração das 13 funções da API')
 console.log('═'.repeat(60))
 
-sep('intcomma — agrupa milhares no separador local')
-show(`intcomma(1_234_567)`, intcomma(1_234_567))
-show(`intcomma(1_234_567, { locale: 'pt-BR' })`, intcomma(1_234_567, { locale: 'pt-BR' }))
-show(`intcomma(1234.5454, { ndigits: 2 })`, intcomma(1234.5454, { ndigits: 2 }))
+sep('intComma — agrupa milhares no separador local')
+show(`intComma(1_234_567)`, intComma(1_234_567))
+show(`intComma(1_234_567, { locale: 'pt-BR' })`, intComma(1_234_567, { locale: 'pt-BR' }))
+show(`intComma(1234.5454, { ndigits: 2 })`, intComma(1234.5454, { ndigits: 2 }))
 show(
-  `intcomma(1234.5454, { ndigits: 2, locale: 'pt-BR' })`,
-  intcomma(1234.5454, { ndigits: 2, locale: 'pt-BR' }),
+  `intComma(1234.5454, { ndigits: 2, locale: 'pt-BR' })`,
+  intComma(1234.5454, { ndigits: 2, locale: 'pt-BR' }),
 )
 
-sep('intword — escala em mil/milhão/bilhão localizado')
-show(`intword(123_455_913)`, intword(123_455_913))
-show(`intword(123_455_913, { locale: 'pt-BR' })`, intword(123_455_913, { locale: 'pt-BR' }))
-show(`intword(1_000_000, { locale: 'pt-BR' })`, intword(1_000_000, { locale: 'pt-BR' }))
-show(`intword(999)`, intword(999))
+sep('intWord — escala em mil/milhão/bilhão localizado')
+show(`intWord(123_455_913)`, intWord(123_455_913))
+show(`intWord(123_455_913, { locale: 'pt-BR' })`, intWord(123_455_913, { locale: 'pt-BR' }))
+show(`intWord(1_000_000, { locale: 'pt-BR' })`, intWord(1_000_000, { locale: 'pt-BR' }))
+show(`intWord(999)`, intWord(999))
 
 sep('ordinal — sufixo ordinal (st/nd/rd/th ou º/ª)')
 show(`ordinal(1)`, ordinal(1))
@@ -55,10 +55,10 @@ show(
   ordinal(1, { locale: 'pt-BR', gender: 'female' }),
 )
 
-sep('apnumber — escreve dígitos 0 a 9 por extenso')
-show(`apnumber(4)`, apnumber(4))
-show(`apnumber(4, { locale: 'pt-BR' })`, apnumber(4, { locale: 'pt-BR' }))
-show(`apnumber(10)`, apnumber(10))
+sep('apNumber — escreve dígitos 0 a 9 por extenso')
+show(`apNumber(4)`, apNumber(4))
+show(`apNumber(4, { locale: 'pt-BR' })`, apNumber(4, { locale: 'pt-BR' }))
+show(`apNumber(10)`, apNumber(10))
 
 sep('fractional — aproxima como fração comum')
 show(`fractional(1/3)`, fractional(1 / 3))
@@ -79,56 +79,56 @@ show(
   clamp(0.999, { ceil: 0.99, format: (n) => `${Math.round(n * 100)}%` }),
 )
 
-sep('naturalsize — tamanho de arquivo (SI / IEC / GNU)')
-show(`naturalsize(1_000_000)`, naturalsize(1_000_000))
-show(`naturalsize(1_000_000, { binary: true })`, naturalsize(1_000_000, { binary: true }))
-show(`naturalsize(1024, { gnu: true })`, naturalsize(1024, { gnu: true }))
-show(`naturalsize(0)`, naturalsize(0))
-show(`naturalsize(1)`, naturalsize(1))
-show(`naturalsize(1_000_000, { locale: 'pt-BR' })`, naturalsize(1_000_000, { locale: 'pt-BR' }))
+sep('naturalSize — tamanho de arquivo (SI / IEC / GNU)')
+show(`naturalSize(1_000_000)`, naturalSize(1_000_000))
+show(`naturalSize(1_000_000, { binary: true })`, naturalSize(1_000_000, { binary: true }))
+show(`naturalSize(1024, { gnu: true })`, naturalSize(1024, { gnu: true }))
+show(`naturalSize(0)`, naturalSize(0))
+show(`naturalSize(1)`, naturalSize(1))
+show(`naturalSize(1_000_000, { locale: 'pt-BR' })`, naturalSize(1_000_000, { locale: 'pt-BR' }))
 
-sep('naturaldelta — duração na maior unidade não trivial')
-show(`naturaldelta({ seconds: 1001 })`, naturaldelta({ seconds: 1001 }))
+sep('naturalDelta — duração na maior unidade não trivial')
+show(`naturalDelta({ seconds: 1001 })`, naturalDelta({ seconds: 1001 }))
 show(
-  `naturaldelta({ seconds: 1001 }, { locale: 'pt-BR' })`,
-  naturaldelta({ seconds: 1001 }, { locale: 'pt-BR' }),
+  `naturalDelta({ seconds: 1001 }, { locale: 'pt-BR' })`,
+  naturalDelta({ seconds: 1001 }, { locale: 'pt-BR' }),
 )
-show(`naturaldelta({ hours: 1 })`, naturaldelta({ hours: 1 }))
-show(`naturaldelta({ days: 365 })`, naturaldelta({ days: 365 }))
-show(`naturaldelta(0)`, naturaldelta(0))
+show(`naturalDelta({ hours: 1 })`, naturalDelta({ hours: 1 }))
+show(`naturalDelta({ days: 365 })`, naturalDelta({ days: 365 }))
+show(`naturalDelta(0)`, naturalDelta(0))
 
-sep('naturaltime — relativo a agora ("há X" / "em X")')
+sep('naturalTime — relativo a agora ("há X" / "em X")')
 const past = new Date(Date.now() - 3_600_000)
 const future = new Date(Date.now() + 60_000)
-show(`naturaltime(1 hora atrás)`, naturaltime(past))
-show(`naturaltime(1 hora atrás, pt-BR)`, naturaltime(past, { locale: 'pt-BR' }))
-show(`naturaltime(1 minuto à frente, pt-BR)`, naturaltime(future, { locale: 'pt-BR' }))
-show(`naturaltime({ seconds: 3 })`, naturaltime({ seconds: 3 }))
+show(`naturalTime(1 hora atrás)`, naturalTime(past))
+show(`naturalTime(1 hora atrás, pt-BR)`, naturalTime(past, { locale: 'pt-BR' }))
+show(`naturalTime(1 minuto à frente, pt-BR)`, naturalTime(future, { locale: 'pt-BR' }))
+show(`naturalTime({ seconds: 3 })`, naturalTime({ seconds: 3 }))
 
-sep('naturalday — hoje / ontem / amanhã (ou data formatada)')
+sep('naturalDay — hoje / ontem / amanhã (ou data formatada)')
 const today = new Date()
 const yesterday = new Date(today.getTime() - 86_400_000)
 const oldDay = new Date(2026, 0, 2)
-show(`naturalday(hoje)`, naturalday(today))
-show(`naturalday(ontem, pt-BR)`, naturalday(yesterday, { locale: 'pt-BR' }))
-show(`naturalday(02/Jan/2026)`, naturalday(oldDay, { now: today }))
+show(`naturalDay(hoje)`, naturalDay(today))
+show(`naturalDay(ontem, pt-BR)`, naturalDay(yesterday, { locale: 'pt-BR' }))
+show(`naturalDay(02/Jan/2026)`, naturalDay(oldDay, { now: today }))
 
-sep('naturaldate — como naturalday, mas com ano se necessário')
+sep('naturalDate — como naturalDay, mas com ano se necessário')
 const oldDate = new Date(2007, 5, 5)
-show(`naturaldate(05/Jun/2007)`, naturaldate(oldDate))
-show(`naturaldate(05/Jun/2007, pt-BR)`, naturaldate(oldDate, { locale: 'pt-BR' }))
-show(`naturaldate(hoje)`, naturaldate(today))
+show(`naturalDate(05/Jun/2007)`, naturalDate(oldDate))
+show(`naturalDate(05/Jun/2007, pt-BR)`, naturalDate(oldDate, { locale: 'pt-BR' }))
+show(`naturalDate(hoje)`, naturalDate(today))
 
-sep('precisedelta — duração detalhada em múltiplas unidades')
-show(`precisedelta({ days: 2, seconds: 3633 })`, precisedelta({ days: 2, seconds: 3633 }))
+sep('preciseDelta — duração detalhada em múltiplas unidades')
+show(`preciseDelta({ days: 2, seconds: 3633 })`, preciseDelta({ days: 2, seconds: 3633 }))
 show(
-  `precisedelta({ days: 2, seconds: 3633 }, { locale: 'pt-BR' })`,
-  precisedelta({ days: 2, seconds: 3633 }, { locale: 'pt-BR' }),
+  `preciseDelta({ days: 2, seconds: 3633 }, { locale: 'pt-BR' })`,
+  preciseDelta({ days: 2, seconds: 3633 }, { locale: 'pt-BR' }),
 )
-show(`precisedelta({ minutes: 1 })`, precisedelta({ minutes: 1 }))
+show(`preciseDelta({ minutes: 1 })`, preciseDelta({ minutes: 1 }))
 show(
-  `precisedelta({ seconds: 33, milliseconds: 123 }, { minimumUnit: 'millisecond' })`,
-  precisedelta({ seconds: 33, milliseconds: 123 }, { minimumUnit: 'millisecond' }),
+  `preciseDelta({ seconds: 33, milliseconds: 123 }, { minimumUnit: 'millisecond' })`,
+  preciseDelta({ seconds: 33, milliseconds: 123 }, { minimumUnit: 'millisecond' }),
 )
 
 console.log('\n' + '═'.repeat(60))

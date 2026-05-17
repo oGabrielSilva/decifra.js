@@ -1,13 +1,13 @@
-import { apnumber, clamp, fractional, intcomma, intword, ordinal, scientific } from 'decifra.js'
+import { apNumber, clamp, fractional, intComma, intWord, ordinal, scientific } from 'decifra.js'
 
-console.log('intcomma:')
-console.log('  en:    ', intcomma(1_234_567))
-console.log('  pt-BR: ', intcomma(1_234_567, { locale: 'pt-BR' }))
-console.log('  ndigits:', intcomma(1234.5454, { ndigits: 2, locale: 'pt-BR' }))
+console.log('intComma:')
+console.log('  en:    ', intComma(1_234_567))
+console.log('  pt-BR: ', intComma(1_234_567, { locale: 'pt-BR' }))
+console.log('  ndigits:', intComma(1234.5454, { ndigits: 2, locale: 'pt-BR' }))
 
-console.log('\nintword:')
-console.log('  en:    ', intword(123_455_913))
-console.log('  pt-BR: ', intword(123_455_913, { locale: 'pt-BR' }))
+console.log('\nintWord:')
+console.log('  en:    ', intWord(123_455_913))
+console.log('  pt-BR: ', intWord(123_455_913, { locale: 'pt-BR' }))
 
 console.log('\nordinal:')
 console.log('  en:    ', ordinal(1), ordinal(2), ordinal(11), ordinal(102))
@@ -17,9 +17,9 @@ console.log(
   ordinal(1, { locale: 'pt-BR', gender: 'female' }),
 )
 
-console.log('\napnumber:')
-console.log('  en:    ', apnumber(4), apnumber(9), apnumber(10))
-console.log('  pt-BR: ', apnumber(4, { locale: 'pt-BR' }), apnumber(7, { locale: 'pt-BR' }))
+console.log('\napNumber:')
+console.log('  en:    ', apNumber(4), apNumber(9), apNumber(10))
+console.log('  pt-BR: ', apNumber(4, { locale: 'pt-BR' }), apNumber(7, { locale: 'pt-BR' }))
 
 console.log('\nfractional:')
 console.log('  1/3 =', fractional(1 / 3))

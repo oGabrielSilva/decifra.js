@@ -3,7 +3,7 @@ import { getLocale } from '../i18n/registry.js'
 import type { LocaleId } from '../i18n/types.js'
 import { getNumberFormat } from '../util/intl-cache.js'
 
-export interface NaturalsizeOptions {
+export interface NaturalSizeOptions {
   locale?: LocaleId
   /** Usa base 1024 com sufixos IEC (`KiB`, `MiB`, ...). Default `false`. */
   binary?: boolean
@@ -27,7 +27,7 @@ const GNU_SUFFIXES = ['K', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y'] as const
  * sofrem perda de precisão pela aritmética fp64, mas a mantissa renderizada
  * com 1 casa decimal mascara o erro na prática.
  */
-export function naturalsize(value: number, opts: NaturalsizeOptions = {}): string {
+export function naturalSize(value: number, opts: NaturalSizeOptions = {}): string {
   if (!Number.isFinite(value)) return String(value)
 
   const locale = resolveLocale(opts.locale)

@@ -2,7 +2,7 @@ export type LocaleId = 'en' | 'pt-BR'
 
 export type OrdinalGender = 'male' | 'female'
 
-export interface IntwordScale {
+export interface IntWordScale {
   readonly exponent: number
   readonly one: string
   readonly other: string
@@ -54,8 +54,8 @@ export interface TimeWords {
 
 export interface LocaleStrings {
   readonly id: LocaleId
-  readonly intwordScales: readonly IntwordScale[]
-  readonly apnumber: ApNumberTable
+  readonly intWordScales: readonly IntWordScale[]
+  readonly apNumber: ApNumberTable
   readonly byteWords: ByteWords
   readonly time: TimeWords
   ordinal(value: number, gender: OrdinalGender): string

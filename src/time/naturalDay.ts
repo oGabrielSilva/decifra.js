@@ -12,7 +12,7 @@ export interface NaturalDayOptions {
 
 const DEFAULT_FORMAT: Intl.DateTimeFormatOptions = { month: 'short', day: '2-digit' }
 
-export function naturalday(value: Date | number, opts: NaturalDayOptions = {}): string {
+export function naturalDay(value: Date | number, opts: NaturalDayOptions = {}): string {
   const locale = resolveLocale(opts.locale)
   const time = getLocale(locale).time
   const date = value instanceof Date ? value : new Date(value)

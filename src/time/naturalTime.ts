@@ -3,8 +3,8 @@ import { getLocale } from '../i18n/registry.js'
 import type { LocaleId } from '../i18n/types.js'
 import { toMilliseconds } from './duration.js'
 import type { Duration } from './duration.js'
-import { naturaldelta } from './naturaldelta.js'
-import type { MinimumTimeUnit } from './naturaldelta.js'
+import { naturalDelta } from './naturalDelta.js'
+import type { MinimumTimeUnit } from './naturalDelta.js'
 
 export interface NaturalTimeOptions {
   locale?: LocaleId
@@ -22,7 +22,7 @@ export interface NaturalTimeOptions {
  * Não aceita `number` para evitar ambiguidade timestamp/delta — use
  * `new Date(timestamp)` ou `{ seconds, minutes, hours, ... }`.
  */
-export function naturaltime(value: Date | Duration, opts: NaturalTimeOptions = {}): string {
+export function naturalTime(value: Date | Duration, opts: NaturalTimeOptions = {}): string {
   const locale = resolveLocale(opts.locale)
   const time = getLocale(locale).time
 
@@ -35,10 +35,10 @@ export function naturaltime(value: Date | Duration, opts: NaturalTimeOptions = {
     if (opts.future === true) pastMs = -pastMs
   }
 
-  const naturalDeltaOpts: Parameters<typeof naturaldelta>[1] = { locale }
+  const naturalDeltaOpts: Parameters<typeof naturalDelta>[1] = { locale }
   if (opts.minimumUnit !== undefined) naturalDeltaOpts.minimumUnit = opts.minimumUnit
   if (opts.months !== undefined) naturalDeltaOpts.months = opts.months
 
-  const deltaText = naturaldelta(Math.abs(pastMs), naturalDeltaOpts)
+  const deltaText = naturalDelta(Math.abs(pastMs), naturalDeltaOpts)
   return pastMs < 0 ? time.future(deltaText) : time.past(deltaText)
 }

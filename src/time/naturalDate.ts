@@ -17,10 +17,10 @@ const FORMAT_WITH_YEAR: Intl.DateTimeFormatOptions = {
 
 /**
  * Formata uma data localmente, incluindo o ano quando ela está a mais de
- * cinco meses do `now` de referência. Diferente de `naturalday`, sempre
+ * cinco meses do `now` de referência. Diferente de `naturalDay`, sempre
  * retorna data formatada (não delega para "hoje" / "ontem" / "amanhã").
  */
-export function naturaldate(value: Date | number, opts: NaturalDateOptions = {}): string {
+export function naturalDate(value: Date | number, opts: NaturalDateOptions = {}): string {
   const locale = resolveLocale(opts.locale)
   const date = value instanceof Date ? value : new Date(value)
   const now = opts.now ?? new Date()

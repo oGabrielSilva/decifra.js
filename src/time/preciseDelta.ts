@@ -5,7 +5,7 @@ import { getNumberFormat, getPluralRules } from '../util/intl-cache.js'
 import { DAY, HOUR, MINUTE, MONTH, SECOND, WEEK, YEAR, toMilliseconds } from './duration.js'
 import type { Delta } from './duration.js'
 
-export type PrecisedeltaUnit =
+export type PreciseDeltaUnit =
   | 'year'
   | 'month'
   | 'week'
@@ -16,20 +16,20 @@ export type PrecisedeltaUnit =
   | 'millisecond'
   | 'microsecond'
 
-export interface PrecisedeltaOptions {
+export interface PreciseDeltaOptions {
   locale?: LocaleId
-  minimumUnit?: PrecisedeltaUnit
+  minimumUnit?: PreciseDeltaUnit
   /**
    * Unidades que devem ser omitidas. Default `['week']`: humanize Python não
    * tem semana na hierarquia, então semanas sempre seriam absorvidas em dias.
    * Para habilitar semanas explicitamente, passe `suppress: []`.
    */
-  suppress?: readonly PrecisedeltaUnit[]
+  suppress?: readonly PreciseDeltaUnit[]
   /** Formato customizado aplicado apenas ao último valor quando ele é fracionário. */
   format?: (value: number) => string
 }
 
-const UNIT_ORDER: readonly PrecisedeltaUnit[] = [
+const UNIT_ORDER: readonly PreciseDeltaUnit[] = [
   'year',
   'month',
   'week',
@@ -43,7 +43,7 @@ const UNIT_ORDER: readonly PrecisedeltaUnit[] = [
 
 // Valores em microssegundos para garantir aritmética inteira.
 // Evita drift de ponto flutuante quando minimumUnit é 'microsecond'.
-const UNIT_US: Record<PrecisedeltaUnit, number> = {
+const UNIT_US: Record<PreciseDeltaUnit, number> = {
   year: YEAR * 1000,
   month: MONTH * 1000,
   week: WEEK * 1000,
@@ -55,7 +55,7 @@ const UNIT_US: Record<PrecisedeltaUnit, number> = {
   microsecond: 1,
 }
 
-export function precisedelta(delta: Delta, opts: PrecisedeltaOptions = {}): string {
+export function preciseDelta(delta: Delta, opts: PreciseDeltaOptions = {}): string {
   const locale = resolveLocale(opts.locale)
   const time = getLocale(locale).time
   const minimumUnit = opts.minimumUnit ?? 'second'
@@ -67,7 +67,7 @@ export function precisedelta(delta: Delta, opts: PrecisedeltaOptions = {}): stri
 
   let remainingUs = Math.round(Math.abs(toMilliseconds(delta)) * 1000)
 
-  type Part = { unit: PrecisedeltaUnit; value: number }
+  type Part = { unit: PreciseDeltaUnit; value: number }
   const parts: Part[] = []
   for (let i = 0; i < activeUnits.length; i++) {
     const unit = activeUnits[i]!
@@ -106,7 +106,7 @@ export function precisedelta(delta: Delta, opts: PrecisedeltaOptions = {}): stri
   return joinList(rendered, time.separator, time.connector)
 }
 
-function unitWords(time: TimeWords, unit: PrecisedeltaUnit): UnitWords {
+function unitWords(time: TimeWords, unit: PreciseDeltaUnit): UnitWords {
   return time[unit]
 }
 
