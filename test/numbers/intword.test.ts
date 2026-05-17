@@ -53,6 +53,14 @@ describe('intword', () => {
     it('plural quatrilhões', () => {
       expect(intword(5e15, { locale: 'pt-BR' })).toBe('5,0 quatrilhões')
     })
+
+    it('fracionário usa plural (PT culto)', () => {
+      expect(intword(1_500_000, { locale: 'pt-BR' })).toBe('1,5 milhões')
+    })
+
+    it('negativo unitário usa singular pela magnitude', () => {
+      expect(intword(-1_000_000, { locale: 'pt-BR' })).toBe('-1,0 milhão')
+    })
   })
 
   describe('default global', () => {

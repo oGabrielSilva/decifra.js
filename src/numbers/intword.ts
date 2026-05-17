@@ -25,8 +25,10 @@ export function intword(value: number, opts: IntwordOptions = {}): string {
   const scaled = value / 10 ** scale.exponent
   const format = opts.format ?? defaultFormat(locale)
   const formatted = format(scaled)
-  const plural = new Intl.PluralRules(locale).select(scaled)
-  const label = plural === 'one' ? scale.one : scale.other
+  // Pluralização de magnitude: usa "1 milhão" mas "1,5 milhões" (PT culto).
+  // Intl.PluralRules('pt-BR').select(1.5) === 'one' devolveria "milhão", então
+  // a regra é checar magnitude exata em vez de categoria CLDR.
+  const label = Math.abs(scaled) === 1 ? scale.one : scale.other
 
   return `${formatted} ${label}`
 }
