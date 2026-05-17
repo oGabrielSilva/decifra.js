@@ -54,6 +54,13 @@ describe('naturalday', () => {
       const tomorrow = new Date(2026, 4, 17)
       expect(naturalday(tomorrow, { now: NOW, locale: 'pt-BR' })).toBe('amanhã')
     })
+
+    it('data antiga formata via Intl pt-BR', () => {
+      const old = new Date(2026, 0, 2)
+      const result = naturalday(old, { now: NOW, locale: 'pt-BR' })
+      expect(result).toContain('jan')
+      expect(result).toContain('02')
+    })
   })
 
   describe('default global', () => {
