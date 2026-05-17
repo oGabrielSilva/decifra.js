@@ -42,6 +42,11 @@ describe('naturaldelta', () => {
       )
     })
 
+    it('zero exato sempre é a moment, mesmo com minimumUnit', () => {
+      expect(naturaldelta(0, { minimumUnit: 'milliseconds' })).toBe('a moment')
+      expect(naturaldelta(0, { minimumUnit: 'microseconds' })).toBe('a moment')
+    })
+
     it('1 milissegundo singular', () => {
       expect(naturaldelta({ milliseconds: 1 }, { minimumUnit: 'milliseconds' })).toBe(
         'a millisecond',

@@ -20,6 +20,9 @@ export function naturaldelta(delta: Delta, opts: NaturalDeltaOptions = {}): stri
   const minimumUnit = opts.minimumUnit ?? 'seconds'
   const includeMonths = opts.months ?? true
 
+  // Zero exato sempre é "a moment", independente de minimumUnit.
+  if (abs === 0) return time.moment
+
   if (abs < SECOND) {
     if (minimumUnit === 'milliseconds') {
       return renderUnit(Math.round(abs), time.millisecond, locale)
