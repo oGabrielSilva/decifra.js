@@ -55,4 +55,24 @@ describe('scientific', () => {
       expect(scientific(Infinity)).toBe('Infinity')
     })
   })
+
+  describe('expoentes de dois dígitos', () => {
+    it('1e10 com expoente positivo de 2 dígitos', () => {
+      expect(scientific(1e10)).toBe('1.00 × 10¹⁰')
+    })
+
+    it('1e-10 com expoente negativo de 2 dígitos', () => {
+      expect(scientific(1e-10)).toBe('1.00 × 10⁻¹⁰')
+    })
+
+    it('1e100 com expoente de 3 dígitos', () => {
+      expect(scientific(1e100)).toBe('1.00 × 10¹⁰⁰')
+    })
+  })
+
+  describe('precisão zero pt-BR', () => {
+    it('500 com precision 0 e vírgula', () => {
+      expect(scientific(500, { precision: 0, locale: 'pt-BR' })).toBe('5 × 10²')
+    })
+  })
 })
