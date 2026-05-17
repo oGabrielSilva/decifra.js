@@ -36,7 +36,8 @@
     "moduleDetection": "force",
     "skipLibCheck": true,
 
-    // tsup usa rollup-plugin-dts que ainda injeta baseUrl (deprecado em TS 6).
+    // tsup usa rollup-plugin-dts que injeta baseUrl (deprecado em TS 6).
+    // Remover esta flag quebra `yarn build` no passo DTS.
     "ignoreDeprecations": "6.0"
   },
   "include": ["src/**/*", "test/**/*", "scripts/**/*", "vitest.config.ts", "tsup.config.ts"]

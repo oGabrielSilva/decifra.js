@@ -1,6 +1,6 @@
 {
   "name": "decifra.js",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Formatação humanizada de números, datas, tamanhos e durações para JavaScript e TypeScript. pt-BR de primeira classe.",
   "type": "module",
   "main": "./dist/index.js",
@@ -24,7 +24,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "demo": "tsx scripts/demo.ts",
-    "cli": "tsx scripts/cli.ts"
+    "cli": "tsx scripts/cli.ts",
+    "docs": "typedoc"
   },
   "keywords": [
     "humanize",
@@ -62,6 +63,8 @@
     "prettier": "^3.8.3",
     "tsup": "^8.5.1",
     "tsx": "^4.22.0",
+    "typedoc": "^0.28.19",
+    "typedoc-plugin-markdown": "^4.11.0",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.59.3",
     "vitest": "^4.1.6"

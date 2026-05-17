@@ -1,7 +1,20 @@
 export interface FractionalOptions {
+  /** Limite superior do denominador na aproximação. Default `1000`. */
   maxDenominator?: number
 }
 
+/**
+ * Aproxima um número decimal como fração comum reduzida (algoritmo de
+ * frações contínuas, equivalente a `Fraction.limit_denominator` do Python).
+ *
+ * @example
+ * ```ts
+ * fractional(1 / 3)    // "1/3"
+ * fractional(1.5)      // "1 1/2"
+ * fractional(0.25)     // "1/4"
+ * fractional(2)        // "2"
+ * ```
+ */
 export function fractional(value: number, opts: FractionalOptions = {}): string {
   if (!Number.isFinite(value)) return String(value)
   if (Number.isInteger(value)) return String(value)

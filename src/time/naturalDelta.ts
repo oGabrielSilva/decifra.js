@@ -8,11 +8,27 @@ import type { Delta } from './duration.js'
 export type MinimumTimeUnit = 'microseconds' | 'milliseconds' | 'seconds'
 
 export interface NaturalDeltaOptions {
+  /** Locale a usar. Default: locale global de `setDefaultLocale`. */
   locale?: LocaleId
+  /** Unidade mínima a considerar. Default `'seconds'`. */
   minimumUnit?: MinimumTimeUnit
+  /** Quando `false`, agrupa em dias até atingir um ano. Default `true`. */
   months?: boolean
 }
 
+/**
+ * Duração na maior unidade não trivial ("16 minutes", "a year", "a moment").
+ * Não inclui prefixo de tempo relativo — para isso use `naturalTime`.
+ *
+ * @example
+ * ```ts
+ * naturalDelta({ seconds: 1001 })                                         // "16 minutes"
+ * naturalDelta({ seconds: 1001 }, { locale: 'pt-BR' })                    // "16 minutos"
+ * naturalDelta({ hours: 1 })                                              // "an hour"
+ * naturalDelta(0)                                                         // "a moment"
+ * naturalDelta({ milliseconds: 4 }, { minimumUnit: 'milliseconds' })      // "4 milliseconds"
+ * ```
+ */
 export function naturalDelta(delta: Delta, opts: NaturalDeltaOptions = {}): string {
   const locale = resolveLocale(opts.locale)
   const time = getLocale(locale).time

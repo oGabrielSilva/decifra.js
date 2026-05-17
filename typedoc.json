@@ -1,0 +1,21 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": ["src/index.ts"],
+  "out": "docs",
+  "plugin": ["typedoc-plugin-markdown"],
+  "entryFileName": "API.md",
+  "readme": "none",
+  "hideGenerator": true,
+  "hideBreadcrumbs": true,
+  "hidePageHeader": true,
+  "excludePrivate": true,
+  "excludeInternal": true,
+  "excludeProtected": true,
+  "excludeExternals": true,
+  "githubPages": false,
+  "useCodeBlocks": true,
+  "expandObjects": true,
+  "parametersFormat": "table",
+  "outputFileStrategy": "modules",
+  "intentionallyNotExported": ["ApNumberTable", "ByteWords", "IntWordScale", "TimeWords"]
+}

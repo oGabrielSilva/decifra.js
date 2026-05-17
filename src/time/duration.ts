@@ -1,3 +1,7 @@
+/**
+ * Duração estruturada. Anos contam 365 dias, meses contam 30 dias —
+ * aproximações idênticas às do humanize Python.
+ */
 export interface Duration {
   years?: number
   months?: number
@@ -10,6 +14,10 @@ export interface Duration {
   microseconds?: number
 }
 
+/**
+ * Entrada de delta para `naturalDelta`, `naturalTime` (Duration) e
+ * `preciseDelta`. `number` é interpretado como milissegundos.
+ */
 export type Delta = number | Duration
 
 export const MILLISECOND = 1

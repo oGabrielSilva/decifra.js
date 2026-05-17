@@ -20,20 +20,12 @@ yarn add decifra.js
 
 Requer Node 18+. Apenas ESM.
 
-## Experimentando localmente
-
-Depois de clonar o repo e rodar `yarn install`:
-
-- `yarn demo` percorre as 13 funções com entradas e saídas comentadas.
-- `yarn cli` abre um menu interativo onde você escolhe a função e informa os argumentos.
-- `yarn test:run` executa a bateria de testes.
-
 ## Locale
 
 Toda função aceita `{ locale?: 'en' | 'pt-BR' }`. Sem opção, usa o default global (inicia em `'en'`).
 
 ```ts
-import { intComma, setDefaultLocale, getDefaultLocale } from 'decifra.js'
+import { intComma, setDefaultLocale } from 'decifra.js'
 
 intComma(1234) // "1,234"
 intComma(1234, { locale: 'pt-BR' }) // "1.234"
@@ -42,43 +34,30 @@ setDefaultLocale('pt-BR')
 intComma(1234) // "1.234"
 ```
 
-## API
+## API resumida
 
-### Números
+| Categoria | Funções |
+| --- | --- |
+| Números | `intComma`, `intWord`, `ordinal`, `apNumber`, `fractional`, `scientific`, `clamp` |
+| Tamanho | `naturalSize` (SI, IEC binário, GNU) |
+| Tempo / data | `naturalDelta`, `naturalTime`, `naturalDay`, `naturalDate`, `preciseDelta` |
+| Locale | `setDefaultLocale`, `getDefaultLocale` |
 
-| Função                 | Exemplo (en)                              | Exemplo (pt-BR)                          |
-| ---------------------- | ----------------------------------------- | ---------------------------------------- |
-| `intComma(n, opts?)`   | `intComma(12345)` → `12,345`              | `intComma(12345)` → `12.345`             |
-| `intWord(n, opts?)`    | `intWord(123_455_913)` → `123.5 million`  | `intWord(123_455_913)` → `123,5 milhões` |
-| `ordinal(n, opts?)`    | `ordinal(2)` → `2nd`                      | `ordinal(2)` → `2º`                      |
-| `apNumber(n, opts?)`   | `apNumber(4)` → `four`                    | `apNumber(4)` → `quatro`                 |
-| `fractional(n, opts?)` | `fractional(1.5)` → `1 1/2`               | (saída é puramente numérica)             |
-| `scientific(n, opts?)` | `scientific(0.3)` → `3.00 × 10⁻¹`         | `scientific(0.3)` → `3,00 × 10⁻¹`        |
-| `clamp(n, opts)`       | `clamp(0.001, { floor: 0.01 })` → `<0.01` | mesmo                                    |
+**Documentação completa de cada função, opção e tipo: [`docs/API.md`](./docs/API.md).**
 
-### Tamanho de arquivo
+Gere ou atualize a doc localmente com `yarn docs` (typedoc + typedoc-plugin-markdown a partir do JSDoc do código).
 
-| Função                            | Exemplo (en)                                      | Exemplo (pt-BR)                     |
-| --------------------------------- | ------------------------------------------------- | ----------------------------------- |
-| `naturalSize(n, opts?)`           | `naturalSize(1_000_000)` → `1.0 MB`               | `naturalSize(1_000_000)` → `1,0 MB` |
-| `naturalSize(n, opts?)` (binário) | `naturalSize(1024, { binary: true })` → `1.0 KiB` | `1,0 KiB`                           |
-| `naturalSize(n, opts?)` (GNU)     | `naturalSize(1024, { gnu: true })` → `1.0K`       | `1,0K`                              |
+## Experimentando localmente
 
-### Tempo e data
+Depois de clonar o repo e rodar `yarn install`:
 
-| Função                       | Exemplo (en)                                                   | Exemplo (pt-BR)                    |
-| ---------------------------- | -------------------------------------------------------------- | ---------------------------------- |
-| `naturalDelta(delta, opts?)` | `{ seconds: 1001 }` → `16 minutes`                             | `{ seconds: 1001 }` → `16 minutos` |
-| `naturalTime(value, opts?)`  | `1h atrás` → `an hour ago`                                     | `1h atrás` → `há uma hora`         |
-| `naturalDay(date, opts?)`    | `hoje` → `today`                                               | `hoje` → `hoje`                    |
-| `naturalDate(date, opts?)`   | data antiga → `Jun 05, 2007`                                   | `05 de jun. de 2007`               |
-| `preciseDelta(delta, opts?)` | `{ days: 2, seconds: 3633 }` → `2 days, 1 hour and 33 seconds` | `2 dias, 1 hora e 33 segundos`     |
+- `yarn demo` percorre as 13 funções com entradas e saídas comentadas.
+- `yarn cli` abre um menu interativo onde você escolhe a função e informa os argumentos.
+- `yarn test:run` executa a bateria de testes.
 
-Inputs de tempo aceitam:
+## Changelog
 
-- `Date` (apenas `naturalTime` / `naturalDay` / `naturalDate`)
-- `number` (timestamp em ms para `naturalTime`/`naturalDay`/`naturalDate`; duração em ms para `naturalDelta`/`preciseDelta`)
-- `Duration` (`{ years?, months?, weeks?, days?, hours?, minutes?, seconds?, milliseconds?, microseconds? }`)
+Veja [`CHANGELOG.md`](./CHANGELOG.md).
 
 ## Inspiração
 

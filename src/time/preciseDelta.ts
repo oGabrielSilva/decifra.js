@@ -17,15 +17,17 @@ export type PreciseDeltaUnit =
   | 'microsecond'
 
 export interface PreciseDeltaOptions {
+  /** Locale a usar. Default: locale global de `setDefaultLocale`. */
   locale?: LocaleId
+  /** Unidade mínima a considerar. Default `'second'`. */
   minimumUnit?: PreciseDeltaUnit
   /**
-   * Unidades que devem ser omitidas. Default `['week']`: humanize Python não
-   * tem semana na hierarquia, então semanas sempre seriam absorvidas em dias.
-   * Para habilitar semanas explicitamente, passe `suppress: []`.
+   * Unidades a omitir. Default `['week']` — humanize Python não tem semana na
+   * hierarquia, então semanas sempre seriam absorvidas em dias. Passe `[]`
+   * para habilitar semanas.
    */
   suppress?: readonly PreciseDeltaUnit[]
-  /** Formato customizado aplicado apenas ao último valor quando ele é fracionário. */
+  /** Formato customizado aplicado apenas ao último valor quando fracionário. */
   format?: (value: number) => string
 }
 
@@ -55,6 +57,18 @@ const UNIT_US: Record<PreciseDeltaUnit, number> = {
   microsecond: 1,
 }
 
+/**
+ * Duração detalhada em múltiplas unidades, conectadas por separador e
+ * conjunção localizados ("2 days, 1 hour and 33 seconds").
+ *
+ * @example
+ * ```ts
+ * preciseDelta({ days: 2, seconds: 3633 })                                   // "2 days, 1 hour and 33 seconds"
+ * preciseDelta({ days: 2, seconds: 3633 }, { locale: 'pt-BR' })              // "2 dias, 1 hora e 33 segundos"
+ * preciseDelta({ minutes: 1 })                                               // "1 minute"
+ * preciseDelta({ seconds: 33, ms: 123 }, { minimumUnit: 'millisecond' })     // "33 seconds and 123 milliseconds"
+ * ```
+ */
 export function preciseDelta(delta: Delta, opts: PreciseDeltaOptions = {}): string {
   const locale = resolveLocale(opts.locale)
   const time = getLocale(locale).time

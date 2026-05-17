@@ -4,10 +4,24 @@ import type { LocaleId } from '../i18n/types.js'
 import { getNumberFormat } from '../util/intl-cache.js'
 
 export interface IntWordOptions {
+  /** Locale a usar. Default: locale global de `setDefaultLocale`. */
   locale?: LocaleId
+  /** Formatador da mantissa escalada. Default: 1 casa decimal localizada. */
   format?: (value: number) => string
 }
 
+/**
+ * Converte um número grande em texto com escala (mil, milhão, bilhão, …).
+ * Valores abaixo de 1000 retornam como string sem escala.
+ *
+ * @example
+ * ```ts
+ * intWord(123_455_913)                        // "123.5 million"
+ * intWord(123_455_913, { locale: 'pt-BR' })   // "123,5 milhões"
+ * intWord(1_000_000, { locale: 'pt-BR' })     // "1,0 milhão"
+ * intWord(999)                                // "999"
+ * ```
+ */
 export function intWord(value: number, opts: IntWordOptions = {}): string {
   if (!Number.isFinite(value)) return String(value)
 

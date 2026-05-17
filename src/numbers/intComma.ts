@@ -3,10 +3,22 @@ import type { LocaleId } from '../i18n/types.js'
 import { getNumberFormat } from '../util/intl-cache.js'
 
 export interface IntCommaOptions {
+  /** Locale a usar. Default: locale global de `setDefaultLocale`. */
   locale?: LocaleId
+  /** Número de casas decimais (fixas). Se omitido, preserva o original. */
   ndigits?: number
 }
 
+/**
+ * Formata um número com separador de milhares localizado.
+ *
+ * @example
+ * ```ts
+ * intComma(1_234_567)                          // "1,234,567"
+ * intComma(1_234_567, { locale: 'pt-BR' })     // "1.234.567"
+ * intComma(1234.5454, { ndigits: 2 })          // "1,234.55"
+ * ```
+ */
 export function intComma(value: number, opts: IntCommaOptions = {}): string {
   if (!Number.isFinite(value)) return String(value)
 
