@@ -30,5 +30,9 @@ export function naturaldate(value: Date | number, opts: NaturalDateOptions = {})
   const includeYear = monthsAway > 5
 
   const format = opts.format ?? (includeYear ? FORMAT_WITH_YEAR : FORMAT_NO_YEAR)
-  return new Intl.DateTimeFormat(locale, format).format(date)
+  const formatted = new Intl.DateTimeFormat(locale, format).format(date)
+  // Intl em-US emite "Jun 05, 2007"; strftime/humanize Python emite "Jun 05 2007".
+  // Removemos a vírgula literal apenas no padrão; formatos customizados ficam intactos.
+  if (opts.format !== undefined) return formatted
+  return formatted.replace(/,\s+/g, ' ')
 }

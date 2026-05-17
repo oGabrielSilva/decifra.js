@@ -10,9 +10,9 @@ afterEach(() => {
 
 describe('naturaldate', () => {
   describe('en (padrão)', () => {
-    it('data antiga ganha ano', () => {
+    it('data antiga ganha ano sem vírgula (estilo strftime)', () => {
       const old = new Date(2007, 5, 5)
-      expect(naturaldate(old, { now: NOW })).toBe('Jun 05, 2007')
+      expect(naturaldate(old, { now: NOW })).toBe('Jun 05 2007')
     })
 
     it('data no mesmo ano sem ano', () => {
@@ -37,7 +37,17 @@ describe('naturaldate', () => {
     it('mais de 5 meses no mesmo ano ganha ano', () => {
       const earlier = new Date(2026, 10, 1)
       const earlyNow = new Date(2026, 2, 1)
-      expect(naturaldate(earlier, { now: earlyNow })).toBe('Nov 01, 2026')
+      expect(naturaldate(earlier, { now: earlyNow })).toBe('Nov 01 2026')
+    })
+
+    it('format custom mantém vírgula do Intl', () => {
+      const old = new Date(2007, 5, 5)
+      expect(
+        naturaldate(old, {
+          now: NOW,
+          format: { year: 'numeric', month: 'short', day: '2-digit' },
+        }),
+      ).toBe('Jun 05, 2007')
     })
   })
 
