@@ -21,6 +21,14 @@ const SUPERSCRIPT: Record<string, string> = {
   '+': '⁺',
 }
 
+/**
+ * Notação científica com mantissa e expoente em sobrescrito Unicode.
+ *
+ * Usamos `×` (U+00D7, sinal de multiplicação) em vez do `x` ASCII que o
+ * humanize Python emite. É o glifo correto para multiplicação matemática
+ * e é o que LaTeX, Wikipedia e a literatura científica usam. Divergência
+ * intencional do upstream.
+ */
 export function scientific(value: number, opts: ScientificOptions = {}): string {
   if (!Number.isFinite(value)) return String(value)
 
