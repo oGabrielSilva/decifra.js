@@ -5,7 +5,7 @@
     // See also https://aka.ms/tsconfig/module
     "module": "nodenext",
     "target": "esnext",
-    "types": [],
+    "types": ["node"],
     // For nodejs:
     // "lib": ["esnext"],
     // "types": ["node"],
@@ -39,5 +39,5 @@
     // tsup usa rollup-plugin-dts que ainda injeta baseUrl (deprecado em TS 6).
     "ignoreDeprecations": "6.0"
   },
-  "include": ["src/**/*", "test/**/*", "vitest.config.ts", "tsup.config.ts"]
+  "include": ["src/**/*", "test/**/*", "scripts/**/*", "vitest.config.ts", "tsup.config.ts"]
 }

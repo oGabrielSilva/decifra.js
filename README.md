@@ -20,6 +20,14 @@ yarn add decifra
 
 Requer Node 18+. Apenas ESM.
 
+## Experimentando localmente
+
+Depois de clonar o repo e rodar `yarn install`:
+
+- `yarn demo` percorre as 13 funções com entradas e saídas comentadas.
+- `yarn cli` abre um menu interativo onde você escolhe a função e informa os argumentos.
+- `yarn test:run` executa a bateria de testes.
+
 ## Locale
 
 Toda função aceita `{ locale?: 'en' | 'pt-BR' }`. Sem opção, usa o default global (inicia em `'en'`).
