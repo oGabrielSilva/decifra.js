@@ -45,6 +45,15 @@ describe('precisedelta', () => {
         '1 minute and 30.5 seconds',
       )
     })
+
+    it('microssegundos sem drift de ponto flutuante', () => {
+      expect(
+        precisedelta(
+          { milliseconds: 1, microseconds: 234 },
+          { minimumUnit: 'microsecond' },
+        ),
+      ).toBe('1 millisecond and 234 microseconds')
+    })
   })
 
   describe('pt-BR', () => {

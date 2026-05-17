@@ -18,7 +18,13 @@ export type PrecisedeltaUnit =
 export interface PrecisedeltaOptions {
   locale?: LocaleId
   minimumUnit?: PrecisedeltaUnit
+  /**
+   * Unidades que devem ser omitidas. Default `['week']`: humanize Python não
+   * tem semana na hierarquia, então semanas sempre seriam absorvidas em dias.
+   * Para habilitar semanas explicitamente, passe `suppress: []`.
+   */
   suppress?: readonly PrecisedeltaUnit[]
+  /** Formato customizado aplicado apenas ao último valor quando ele é fracionário. */
   format?: (value: number) => string
 }
 
@@ -34,16 +40,18 @@ const UNIT_ORDER: readonly PrecisedeltaUnit[] = [
   'microsecond',
 ]
 
-const UNIT_MS: Record<PrecisedeltaUnit, number> = {
-  year: YEAR,
-  month: MONTH,
-  week: WEEK,
-  day: DAY,
-  hour: HOUR,
-  minute: MINUTE,
-  second: SECOND,
-  millisecond: 1,
-  microsecond: 0.001,
+// Valores em microssegundos para garantir aritmética inteira.
+// Evita drift de ponto flutuante quando minimumUnit é 'microsecond'.
+const UNIT_US: Record<PrecisedeltaUnit, number> = {
+  year: YEAR * 1000,
+  month: MONTH * 1000,
+  week: WEEK * 1000,
+  day: DAY * 1000,
+  hour: HOUR * 1000,
+  minute: MINUTE * 1000,
+  second: SECOND * 1000,
+  millisecond: 1000,
+  microsecond: 1,
 }
 
 export function precisedelta(delta: Delta, opts: PrecisedeltaOptions = {}): string {
@@ -56,19 +64,19 @@ export function precisedelta(delta: Delta, opts: PrecisedeltaOptions = {}): stri
   const activeUnits = UNIT_ORDER.slice(0, minIdx + 1).filter((u) => !suppress.has(u))
   if (activeUnits.length === 0) activeUnits.push(minimumUnit)
 
-  let remaining = Math.abs(toMilliseconds(delta))
+  let remainingUs = Math.round(Math.abs(toMilliseconds(delta)) * 1000)
 
   type Part = { unit: PrecisedeltaUnit; value: number }
   const parts: Part[] = []
   for (let i = 0; i < activeUnits.length; i++) {
     const unit = activeUnits[i]!
-    const unitMs = UNIT_MS[unit]
+    const unitUs = UNIT_US[unit]
     const isLast = i === activeUnits.length - 1
     if (isLast) {
-      parts.push({ unit, value: remaining / unitMs })
+      parts.push({ unit, value: remainingUs / unitUs })
     } else {
-      const whole = Math.floor(remaining / unitMs)
-      remaining -= whole * unitMs
+      const whole = Math.floor(remainingUs / unitUs)
+      remainingUs -= whole * unitUs
       parts.push({ unit, value: whole })
     }
   }
