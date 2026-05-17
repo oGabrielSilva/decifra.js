@@ -1,7 +1,5 @@
 import { resolveLocale } from '../defaults.js'
-import { getLocale } from '../i18n/registry.js'
 import type { LocaleId } from '../i18n/types.js'
-import { calendarDayDifference } from './calendar.js'
 
 export interface NaturalDateOptions {
   locale?: LocaleId
@@ -16,16 +14,15 @@ const FORMAT_WITH_YEAR: Intl.DateTimeFormatOptions = {
   day: '2-digit',
 }
 
+/**
+ * Formata uma data localmente, incluindo o ano quando ela está a mais de
+ * cinco meses do `now` de referência. Diferente de `naturalday`, sempre
+ * retorna data formatada (não delega para "hoje" / "ontem" / "amanhã").
+ */
 export function naturaldate(value: Date | number, opts: NaturalDateOptions = {}): string {
   const locale = resolveLocale(opts.locale)
-  const time = getLocale(locale).time
   const date = value instanceof Date ? value : new Date(value)
   const now = opts.now ?? new Date()
-
-  const dayDiff = calendarDayDifference(date, now)
-  if (dayDiff === 0) return time.today
-  if (dayDiff === -1) return time.yesterday
-  if (dayDiff === 1) return time.tomorrow
 
   const monthsAway = Math.abs(
     (now.getFullYear() - date.getFullYear()) * 12 + (now.getMonth() - date.getMonth()),
