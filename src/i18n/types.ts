@@ -21,6 +21,7 @@ export interface ByteWords {
 export interface UnitWords {
   readonly singular: string
   readonly plural: string
+  readonly one: string
 }
 
 export interface TimeWords {
