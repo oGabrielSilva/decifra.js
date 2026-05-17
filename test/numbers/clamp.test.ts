@@ -34,4 +34,16 @@ describe('clamp', () => {
   it('NaN passa direto', () => {
     expect(clamp(NaN, { floor: 0 })).toBe('NaN')
   })
+
+  it('floor > ceil ainda funciona, floor ganha precedência', () => {
+    expect(clamp(0.5, { floor: 1, ceil: 0 })).toBe('<1')
+  })
+
+  it('-0 na borda de floor não recorta', () => {
+    expect(clamp(-0, { floor: 0 })).toBe('0')
+  })
+
+  it('format retornando string vazia', () => {
+    expect(clamp(42, { format: () => '' })).toBe('')
+  })
 })
