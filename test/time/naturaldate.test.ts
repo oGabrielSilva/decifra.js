@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it } from 'vitest'
-import { naturaldate } from '../../src/time/naturaldate.js'
 import { setDefaultLocale } from '../../src/defaults.js'
+import { naturaldate } from '../../src/time/naturaldate.js'
 
 const NOW = new Date(2026, 4, 16, 12, 0, 0)
 

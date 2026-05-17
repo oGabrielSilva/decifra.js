@@ -43,6 +43,15 @@ describe('fractional', () => {
     expect(result).toMatch(/^1 \d+\/\d+$/)
   })
 
+  it('quase-inteiro reduz para o inteiro mais próximo', () => {
+    expect(fractional(1.0000001)).toBe('1')
+  })
+
+  it('aproximação sempre reduz por GCD', () => {
+    const result = fractional(0.4)
+    expect(result).toBe('2/5')
+  })
+
   it('NaN fica NaN', () => {
     expect(fractional(NaN)).toBe('NaN')
   })
