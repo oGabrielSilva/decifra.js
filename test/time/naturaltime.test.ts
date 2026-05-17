@@ -33,8 +33,8 @@ describe('naturaltime', () => {
       expect(naturaltime(past, { now: NOW })).toBe('a day ago')
     })
 
-    it('timestamp number aceito', () => {
-      const past = NOW.getTime() - 60_000
+    it('timestamp via new Date(ms)', () => {
+      const past = new Date(NOW.getTime() - 60_000)
       expect(naturaltime(past, { now: NOW })).toBe('a minute ago')
     })
   })

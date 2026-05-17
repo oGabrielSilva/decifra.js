@@ -2,7 +2,7 @@ import { resolveLocale } from '../defaults.js'
 import { getLocale } from '../i18n/registry.js'
 import type { LocaleId } from '../i18n/types.js'
 import { toMilliseconds } from './duration.js'
-import type { Delta, Duration } from './duration.js'
+import type { Duration } from './duration.js'
 import { naturaldelta } from './naturaldelta.js'
 import type { MinimumTimeUnit } from './naturaldelta.js'
 
@@ -14,10 +14,15 @@ export interface NaturalTimeOptions {
   months?: boolean
 }
 
-export function naturaltime(
-  value: Date | number | Duration,
-  opts: NaturalTimeOptions = {},
-): string {
+/**
+ * Render relative time ("an hour ago", "in a minute").
+ *
+ * Aceita `Date` (referência absoluta, comparada com `opts.now ?? new Date()`)
+ * ou `Duration` (delta explícito; positivo = passado, ou ative `future: true`).
+ * Não aceita `number` para evitar ambiguidade timestamp/delta — use
+ * `new Date(timestamp)` ou `{ seconds, minutes, hours, ... }`.
+ */
+export function naturaltime(value: Date | Duration, opts: NaturalTimeOptions = {}): string {
   const locale = resolveLocale(opts.locale)
   const time = getLocale(locale).time
 
@@ -25,11 +30,8 @@ export function naturaltime(
   if (value instanceof Date) {
     const ref = (opts.now ?? new Date()).getTime()
     pastMs = ref - value.getTime()
-  } else if (typeof value === 'number') {
-    const ref = (opts.now ?? new Date()).getTime()
-    pastMs = ref - value
   } else {
-    pastMs = toMilliseconds(value as Delta)
+    pastMs = toMilliseconds(value)
     if (opts.future === true) pastMs = -pastMs
   }
 
