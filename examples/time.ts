@@ -1,4 +1,4 @@
-import { naturaldate, naturaldelta, naturalday, naturaltime, precisedelta } from 'decifra'
+import { naturaldate, naturaldelta, naturalday, naturaltime, precisedelta } from 'decifra.js'
 
 const now = new Date()
 const yesterday = new Date(now.getTime() - 86_400_000)

@@ -1,4 +1,4 @@
-import { naturalsize } from 'decifra'
+import { naturalsize } from 'decifra.js'
 
 console.log('naturalsize (SI):')
 console.log('  1 MB:        ', naturalsize(1_000_000))

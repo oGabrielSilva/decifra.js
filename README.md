@@ -3,7 +3,7 @@
 Formatação humanizada de números, datas, tamanhos e durações para JavaScript e TypeScript. pt-BR de primeira classe.
 
 ```ts
-import { intcomma, naturalsize, naturaltime, setDefaultLocale } from 'decifra'
+import { intcomma, naturalsize, naturaltime, setDefaultLocale } from 'decifra.js'
 
 setDefaultLocale('pt-BR')
 
@@ -15,7 +15,7 @@ naturaltime(new Date(Date.now() - 180_000)) // "há 3 minutos"
 ## Instalação
 
 ```bash
-yarn add decifra
+yarn add decifra.js
 ```
 
 Requer Node 18+. Apenas ESM.

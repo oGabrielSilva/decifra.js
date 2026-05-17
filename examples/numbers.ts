@@ -1,4 +1,4 @@
-import { apnumber, clamp, fractional, intcomma, intword, ordinal, scientific } from 'decifra'
+import { apnumber, clamp, fractional, intcomma, intword, ordinal, scientific } from 'decifra.js'
 
 console.log('intcomma:')
 console.log('  en:    ', intcomma(1_234_567))
