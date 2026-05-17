@@ -1,6 +1,7 @@
 import { resolveLocale } from '../defaults.js'
 import { getLocale } from '../i18n/registry.js'
 import type { LocaleId, TimeWords, UnitWords } from '../i18n/types.js'
+import { getNumberFormat } from '../util/intl-cache.js'
 import { DAY, HOUR, MINUTE, MONTH, SECOND, YEAR, toMilliseconds } from './duration.js'
 import type { Delta } from './duration.js'
 
@@ -48,7 +49,7 @@ export function naturaldelta(delta: Delta, opts: NaturalDeltaOptions = {}): stri
 
 function renderUnit(count: number, words: UnitWords, locale: LocaleId): string {
   if (count === 1) return words.singular
-  const formatted = new Intl.NumberFormat(locale).format(count)
+  const formatted = getNumberFormat(locale).format(count)
   return `${formatted} ${words.plural}`
 }
 

@@ -1,5 +1,6 @@
 import { resolveLocale } from '../defaults.js'
 import type { LocaleId } from '../i18n/types.js'
+import { getNumberFormat } from '../util/intl-cache.js'
 
 export interface IntcommaOptions {
   locale?: LocaleId
@@ -13,11 +14,10 @@ export function intcomma(value: number, opts: IntcommaOptions = {}): string {
   // Intl.NumberFormat default limita a 3 casas decimais; preservamos todas as
   // casas significativas do float (até o limite de fp64) quando ndigits não é
   // explicitado, alinhando com o comportamento de humanize Python.
-  const formatter = new Intl.NumberFormat(locale, {
+  const options: Intl.NumberFormatOptions = {
     useGrouping: true,
-    minimumFractionDigits: opts.ndigits,
     maximumFractionDigits: opts.ndigits ?? 20,
-  })
-
-  return formatter.format(value)
+  }
+  if (opts.ndigits !== undefined) options.minimumFractionDigits = opts.ndigits
+  return getNumberFormat(locale, options).format(value)
 }

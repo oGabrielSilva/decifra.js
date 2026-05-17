@@ -1,6 +1,7 @@
 import { resolveLocale } from '../defaults.js'
 import { getLocale } from '../i18n/registry.js'
 import type { LocaleId } from '../i18n/types.js'
+import { getNumberFormat } from '../util/intl-cache.js'
 
 export interface IntwordOptions {
   locale?: LocaleId
@@ -34,7 +35,7 @@ export function intword(value: number, opts: IntwordOptions = {}): string {
 }
 
 function defaultFormat(locale: LocaleId): (value: number) => string {
-  const formatter = new Intl.NumberFormat(locale, {
+  const formatter = getNumberFormat(locale, {
     minimumFractionDigits: 1,
     maximumFractionDigits: 1,
   })

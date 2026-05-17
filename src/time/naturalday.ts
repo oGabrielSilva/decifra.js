@@ -1,6 +1,7 @@
 import { resolveLocale } from '../defaults.js'
 import { getLocale } from '../i18n/registry.js'
 import type { LocaleId } from '../i18n/types.js'
+import { getDateTimeFormat } from '../util/intl-cache.js'
 import { calendarDayDifference } from './calendar.js'
 
 export interface NaturalDayOptions {
@@ -23,5 +24,5 @@ export function naturalday(value: Date | number, opts: NaturalDayOptions = {}): 
   if (diff === 1) return time.tomorrow
 
   const format = opts.format ?? DEFAULT_FORMAT
-  return new Intl.DateTimeFormat(locale, format).format(date)
+  return getDateTimeFormat(locale, format).format(date)
 }

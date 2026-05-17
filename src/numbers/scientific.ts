@@ -1,5 +1,6 @@
 import { resolveLocale } from '../defaults.js'
 import type { LocaleId } from '../i18n/types.js'
+import { getNumberFormat } from '../util/intl-cache.js'
 
 export interface ScientificOptions {
   locale?: LocaleId
@@ -35,7 +36,7 @@ export function scientific(value: number, opts: ScientificOptions = {}): string 
   const locale = resolveLocale(opts.locale)
   const precision = opts.precision ?? 2
 
-  const parts = new Intl.NumberFormat(locale, {
+  const parts = getNumberFormat(locale, {
     notation: 'scientific',
     minimumFractionDigits: precision,
     maximumFractionDigits: precision,

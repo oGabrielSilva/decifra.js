@@ -1,6 +1,7 @@
 import { resolveLocale } from '../defaults.js'
 import { getLocale } from '../i18n/registry.js'
 import type { LocaleId } from '../i18n/types.js'
+import { getNumberFormat } from '../util/intl-cache.js'
 
 export interface NaturalsizeOptions {
   locale?: LocaleId
@@ -26,8 +27,8 @@ export function naturalsize(value: number, opts: NaturalsizeOptions = {}): strin
     : binary
       ? BINARY_SUFFIXES
       : DECIMAL_SUFFIXES
-  const integerFormatter = new Intl.NumberFormat(locale, { maximumFractionDigits: 0 })
-  const scaledFormatter = new Intl.NumberFormat(locale, {
+  const integerFormatter = getNumberFormat(locale, { maximumFractionDigits: 0 })
+  const scaledFormatter = getNumberFormat(locale, {
     minimumFractionDigits: 1,
     maximumFractionDigits: 1,
   })

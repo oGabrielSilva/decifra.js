@@ -1,6 +1,7 @@
 import { resolveLocale } from '../defaults.js'
 import { getLocale } from '../i18n/registry.js'
 import type { LocaleId, TimeWords, UnitWords } from '../i18n/types.js'
+import { getNumberFormat, getPluralRules } from '../util/intl-cache.js'
 import { DAY, HOUR, MINUTE, MONTH, SECOND, WEEK, YEAR, toMilliseconds } from './duration.js'
 import type { Delta } from './duration.js'
 
@@ -86,8 +87,8 @@ export function precisedelta(delta: Delta, opts: PrecisedeltaOptions = {}): stri
   parts.length = 0
   parts.push(...filtered)
 
-  const pluralRules = new Intl.PluralRules(locale)
-  const integerFormatter = new Intl.NumberFormat(locale, { maximumFractionDigits: 0 })
+  const pluralRules = getPluralRules(locale)
+  const integerFormatter = getNumberFormat(locale, { maximumFractionDigits: 0 })
   const lastFormatter = opts.format ?? defaultFractionalFormat(locale)
 
   const rendered = parts.map((part, i) => {
@@ -110,7 +111,7 @@ function unitWords(time: TimeWords, unit: PrecisedeltaUnit): UnitWords {
 }
 
 function defaultFractionalFormat(locale: LocaleId): (value: number) => string {
-  const formatter = new Intl.NumberFormat(locale, { maximumFractionDigits: 2 })
+  const formatter = getNumberFormat(locale, { maximumFractionDigits: 2 })
   return (value) => formatter.format(value)
 }
 
