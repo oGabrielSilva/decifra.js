@@ -1,6 +1,6 @@
 {
   "name": "decifra",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "description": "Formatação humanizada de números, datas, tamanhos e durações para JavaScript e TypeScript. pt-BR de primeira classe.",
   "type": "module",
   "main": "./dist/index.js",

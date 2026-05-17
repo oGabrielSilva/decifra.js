@@ -63,6 +63,21 @@ describe('intword', () => {
     })
   })
 
+  describe('valores extremos', () => {
+    it('1e100 vira 1.0 googol', () => {
+      expect(intword(1e100)).toBe('1.0 googol')
+    })
+
+    it('5e100 vira 5.0 googol', () => {
+      expect(intword(5e100)).toBe('5.0 googol')
+    })
+
+    it('1e200 escala como múltiplos de googol', () => {
+      const result = intword(1e200)
+      expect(result).toContain('googol')
+    })
+  })
+
   describe('default global', () => {
     it('aplica setDefaultLocale', () => {
       setDefaultLocale('pt-BR')

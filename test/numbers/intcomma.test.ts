@@ -64,5 +64,14 @@ describe('intcomma', () => {
     it('passa Infinity como string', () => {
       expect(intcomma(Infinity)).toBe('Infinity')
     })
+
+    it('NaN em pt-BR também passa', () => {
+      expect(intcomma(NaN, { locale: 'pt-BR' })).toBe('NaN')
+    })
+
+    it('ndigits: 0 força ausência de decimais', () => {
+      expect(intcomma(1234.567, { ndigits: 0 })).toBe('1,235')
+      expect(intcomma(1234.567, { ndigits: 0, locale: 'pt-BR' })).toBe('1.235')
+    })
   })
 })
