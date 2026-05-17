@@ -5,8 +5,14 @@ import { getNumberFormat } from '../util/intl-cache.js'
 
 export interface NaturalsizeOptions {
   locale?: LocaleId
+  /** Usa base 1024 com sufixos IEC (`KiB`, `MiB`, ...). Default `false`. */
   binary?: boolean
+  /**
+   * Modo GNU: base 1024 com sufixos curtos (`K`, `M`, `G`, ...) e sem espaço
+   * entre número e sufixo. Tem precedência sobre `binary` quando ambos `true`.
+   */
   gnu?: boolean
+  /** Formatador customizado da mantissa escalada. Default: 1 casa decimal. */
   format?: (value: number) => string
 }
 
@@ -14,6 +20,13 @@ const DECIMAL_SUFFIXES = ['kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'] as con
 const BINARY_SUFFIXES = ['KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'] as const
 const GNU_SUFFIXES = ['K', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y'] as const
 
+/**
+ * Tamanho de arquivo humanizado.
+ *
+ * Valores acima de ~9 × 10¹⁵ bytes (próximo de `Number.MAX_SAFE_INTEGER`)
+ * sofrem perda de precisão pela aritmética fp64, mas a mantissa renderizada
+ * com 1 casa decimal mascara o erro na prática.
+ */
 export function naturalsize(value: number, opts: NaturalsizeOptions = {}): string {
   if (!Number.isFinite(value)) return String(value)
 
