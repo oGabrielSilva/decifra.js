@@ -27,6 +27,11 @@ describe('intcomma', () => {
     it('formata bilhão', () => {
       expect(intcomma(1_000_000_000)).toBe('1,000,000,000')
     })
+
+    it('preserva precisão decimal além de 3 casas quando ndigits ausente', () => {
+      expect(intcomma(14308.4)).toBe('14,308.4')
+      expect(intcomma(0.123456)).toBe('0.123456')
+    })
   })
 
   describe('pt-BR', () => {
