@@ -28,8 +28,17 @@ describe('apnumber', () => {
       expect(apnumber(-1)).toBe('-1')
     })
 
-    it('mantém não-inteiros como string', () => {
-      expect(apnumber(1.5)).toBe('1.5')
+    it('decimais truncam para o dígito inteiro', () => {
+      expect(apnumber(1.5)).toBe('one')
+      expect(apnumber(7.9)).toBe('seven')
+    })
+
+    it('NaN passa direto', () => {
+      expect(apnumber(NaN)).toBe('NaN')
+    })
+
+    it('Infinity passa direto', () => {
+      expect(apnumber(Infinity)).toBe('Infinity')
     })
   })
 

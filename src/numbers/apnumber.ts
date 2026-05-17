@@ -7,7 +7,10 @@ export interface ApNumberOptions {
 }
 
 export function apnumber(value: number, opts: ApNumberOptions = {}): string {
-  if (!Number.isInteger(value) || value < 0 || value > 9) return String(value)
+  if (!Number.isFinite(value)) return String(value)
+  // Decimais são truncados para alinhar com humanize Python (que aplica int()).
+  const integer = Math.trunc(value)
+  if (integer < 0 || integer > 9) return String(integer)
   const locale = resolveLocale(opts.locale)
-  return getLocale(locale).apnumber[value]!
+  return getLocale(locale).apnumber[integer]!
 }
